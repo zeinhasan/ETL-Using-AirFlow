@@ -1,4 +1,4 @@
-# ETL-Using-AirFlow
+# ETL-Using-Airflow
 This is a simple ETL (Extract, Transform, & Load) using Airflow. Step :
 1. Extract dataset from the API 
 2. Store the dataset to Google Cloud Storage
@@ -61,3 +61,28 @@ http://localhost:8080/
 
 10. Run the DAG by trigger the button like below picture
  ![Connection](DAG.png)
+
+
+# Deploying on Google Cloud Composer
+Google Cloud Composer is a managed workflow orchestration service built on Apache Airflow, an open-source platform designed for orchestrating complex workflows.
+At its core, Composer simplifies the process of scheduling, managing, and monitoring workflows and data pipelines. Here are step to deploy Airflow DAGs on Cloud Composer:
+1. Activate the Cloud Composer API on Google Cloud Platform
+2. Go to Cloud Composer Services and create new environtment
+ ![Composser](CloudComposer1.png)
+3. Choose the environments version, for this tutorial use the Composer 3
+![Composser](CloudComposer2.png) 
+4. Define environment name
+![Composser](CloudComposer3.png)
+5. Choose environment resources
+![Composser](CloudComposer4.png)
+6. Setup network & advance configuration if necessary and create environment
+![Composser](CloudComposer5.png)
+7. Wait until environtment created
+8. Open the created environment and go to DAGs folder
+![Composser](CloudComposer6.png)
+9. Upload the python file for DAGS
+![Composser](CloudComposer7.png)
+10. Wait until the new DAG appear
+![Composser](CloudComposer8.png)
+11. Open the DAG, trigger it, and wait until finish 
+![Composser](CloudComposer9.png)

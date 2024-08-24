@@ -59,7 +59,7 @@ def fetch_and_store_pokemon_data(**kwargs):
         object_name=UPLOAD_FILE_NAME,
         data=csv_data,
         mime_type='text/csv',
-        timeout=3600
+        timeout=7200
     )
     print(f'Uploaded {UPLOAD_FILE_NAME} to GCS.')
 
@@ -68,7 +68,7 @@ def retrieve_and_clean_data(**kwargs):
     data = gcs_hook.download(
         bucket_name=BUCKET_NAME,
         object_name=UPLOAD_FILE_NAME,
-        timeout=3600
+        timeout=7200
     )
     
     df = pd.read_csv(io.StringIO(data.decode('utf-8')))
@@ -89,7 +89,7 @@ def retrieve_and_clean_data(**kwargs):
         object_name=CLEANED_FILE_NAME,
         data=cleaned_csv_data,
         mime_type='text/csv',
-        timeout=3600
+        timeout=7200
     )
     print(f'Uploaded {CLEANED_FILE_NAME} to GCS.')
 
