@@ -38,7 +38,7 @@ Step by step to use Airflow
 2. Install  & Open Docker
 3. Install & Open Visual Studio Code
 4. Open Docker & Visual Studio Code
-5. Create a new file .env adn add the following lines
+5. Create a new file .env and add the following lines
 ```console
 AIRFLOW_IMAGE_NAME=apache/airflow:2.4.2
 AIRFLOW_UID=50000
