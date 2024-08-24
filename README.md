@@ -56,8 +56,8 @@ docker-compose run airflow-worker airflow users create --role Admin --username a
 http://localhost:8080/
 ```
 9. Setting Up Connection, You can create a connection to Google Cloud from Airflow webserver admin menu. In this menu you can pass the Service Account key file path:
-![Connection](Picture\Connection0.png) In this picture, the keyfile Path is '/usr/local/airflow/dags/gcp.json.' Beforehand you need to mount your key file as a volume in your Docker container with the previous path. You can also directly copy the key json content in the Airflow connection, in the keyfile Json field :
-![Connection](\Picture\Connection.png)
+![Connection](Connection0.png) In this picture, the keyfile Path is '/usr/local/airflow/dags/gcp.json.' Beforehand you need to mount your key file as a volume in your Docker container with the previous path. You can also directly copy the key json content in the Airflow connection, in the keyfile Json field :
+![Connection](Connection.png)
 
 10. Run the DAG by trigger the button like below picture
- ![Connection](\Picture\DAG.png)
+ ![Connection](DAG.png)
