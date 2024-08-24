@@ -39,7 +39,7 @@ Step by step to use Airflow
 3. Install & Open Visual Studio Code
 4. Open Docker & Visual Studio Code
 5. Create a new file .env adn add the following lines
-```json
+```console
 AIRFLOW_IMAGE_NAME=apache/airflow:2.4.2
 AIRFLOW_UID=50000
 ```
@@ -48,7 +48,7 @@ AIRFLOW_UID=50000
 docker-compose up -d
 ```
 7. Create Admin user using bellow command:
-```
+```console
 docker-compose run airflow-worker airflow users create --role Admin --username admin --email admin --firstname admin --lastname admin --password admin
 ```
 8. Login to Airflow on and insert username and password:
