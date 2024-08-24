@@ -41,33 +41,9 @@ def fetch_pokemon_species(pokemon_id):
     else:
         return None
 
-def fetch_pokemon_species(pokemon_id):
-    url = f'https://pokeapi.co/api/v2/pokemon-species/{pokemon_id}/'
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return {
-            'id': data['id'],
-            'name': data['name'],
-            'base_happiness': data['base_happiness'],
-            'capture_rate': data['capture_rate'],
-            'forms_switchable': data['forms_switchable'],
-            'gender_rate': data['gender_rate'],
-            'habitat_name': data['habitat']['name'] if data['habitat'] else None,
-            'has_gender_differences': data['has_gender_differences'],
-            'hatch_counter': data['hatch_counter'],
-            'is_baby': data['is_baby'],
-            'is_legendary': data['is_legendary'],
-            'is_mythical': data['is_mythical'],
-            'shape_name': data['shape']['name'] if data['shape'] else None,
-            'growth_rate': data['growth_rate']['name'] if data['growth_rate'] else None
-        }
-    else:
-        return None
-
 def fetch_and_store_pokemon_data(**kwargs):
     pokemon_data_list = []
-    for pokemon_id in range(1, 10):  # Adjust the range as needed for testing
+    for pokemon_id in range(1, 1000):  # Adjust the range as needed for testing
         data = fetch_pokemon_species(pokemon_id)
         if data:
             pokemon_data_list.append(data)
@@ -82,7 +58,8 @@ def fetch_and_store_pokemon_data(**kwargs):
         bucket_name=BUCKET_NAME,
         object_name=UPLOAD_FILE_NAME,
         data=csv_data,
-        mime_type='text/csv'
+        mime_type='text/csv',
+        timeout=3600
     )
     print(f'Uploaded {UPLOAD_FILE_NAME} to GCS.')
 
@@ -90,7 +67,8 @@ def retrieve_and_clean_data(**kwargs):
     gcs_hook = GCSHook(gcp_conn_id='GCSZein')
     data = gcs_hook.download(
         bucket_name=BUCKET_NAME,
-        object_name=UPLOAD_FILE_NAME
+        object_name=UPLOAD_FILE_NAME,
+        timeout=3600
     )
     
     df = pd.read_csv(io.StringIO(data.decode('utf-8')))
@@ -110,7 +88,8 @@ def retrieve_and_clean_data(**kwargs):
         bucket_name=BUCKET_NAME,
         object_name=CLEANED_FILE_NAME,
         data=cleaned_csv_data,
-        mime_type='text/csv'
+        mime_type='text/csv',
+        timeout=3600
     )
     print(f'Uploaded {CLEANED_FILE_NAME} to GCS.')
 
