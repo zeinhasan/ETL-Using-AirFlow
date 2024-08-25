@@ -84,5 +84,9 @@ At its core, Composer simplifies the process of scheduling, managing, and monito
 ![Composser](CloudComposer7.png)
 10. Wait until the new DAG appear
 ![Composser](CloudComposer8.png)
+11. Setting Up Connection, You can create a connection to Google Cloud from Airflow webserver admin menu. In this menu you can pass the Service Account key file path:
+![Connection](Connection0.png) In this picture, the keyfile Path is '/usr/local/airflow/dags/gcp.json.' Beforehand you need to mount your key file as a volume in your Docker container with the previous path. You can also directly copy the key json content in the Airflow connection, in the keyfile Json field :
+![Connection](Connection.png)
+
 11. Open the DAG, trigger it, and wait until finish 
 ![Composser](CloudComposer9.png)
